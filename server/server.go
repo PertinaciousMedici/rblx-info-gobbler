@@ -33,11 +33,9 @@ func RunServer() *serverStructures.Server {
 		WaitGroup: sync.WaitGroup{},
 	}
 
-	{
-		go exceptionLogger(&newServer)
-		go warningLogger(&newServer)
-		go outputLogger(&newServer)
-	}
+	go exceptionLogger(&newServer)
+	go warningLogger(&newServer)
+	go outputLogger(&newServer)
 
 	func(server *serverStructures.Server) {
 		newServer.ServerChannels.PutMessage("Server", "Started rejection logger.")
